@@ -1,0 +1,26 @@
+{% extends 'applitravel/base.html' %}
+{% load static %}
+{% block title %}Déconnexion{% endblock %}
+{% block main %}
+<div class="container py-5" style="max-width: 600px;">
+    <div class="card-neo text-center p-5 animate-fade">
+        <!-- Icône -->
+        <div class="mb-4">
+            <i class="bi bi-box-arrow-right"
+               style="font-size: 3rem; color: var(--primary-light);"></i>
+        </div>
+        <!-- Titre -->
+        <h2 class="fw-bold text-primary-light mb-3">
+            Vous êtes déconnecté
+        </h2>
+        <!-- Message -->
+        <p class="lead opacity-75 mb-4">
+            Merci de votre visite et à très bientôt.
+        </p>
+        <!-- Bouton -->
+        <a href="/login/" class="btn btn-neo-primary px-4 py-2 fw-bold">
+            Se connecter
+        </a>
+    </div>
+</div>
+{% endblock %}

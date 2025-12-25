@@ -1,0 +1,29 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Compte créé{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 650px;">
+    <div class="card-neo text-center p-5 animate-fade">
+        <!-- Icône -->
+        <div class="mb-4">
+            <i class="bi bi-person-check-fill"
+               style="font-size: 3rem; color: var(--primary-light);"></i>
+        </div>
+        <!-- Titre -->
+        <h2 class="fw-bold text-primary-light mb-3">
+            Création de compte réussie !
+        </h2>
+        <!-- Message -->
+        <p class="lead opacity-75 mb-4">
+            Votre compte a bien été enregistré.<br>
+            Vous pouvez maintenant vous connecter et profiter de WebTravel.
+        </p>
+        <!-- Bouton -->
+        <a href="/login/" class="btn btn-neo-primary px-4 py-2 fw-bold">
+            Se connecter
+        </a>
+    </div>
+</div>
+
+{% endblock %}

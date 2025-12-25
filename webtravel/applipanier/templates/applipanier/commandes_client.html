@@ -1,0 +1,55 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Commandes Client{% endblock %}
+
+{% block main %}
+
+<div class="container py-5">
+    <!-- Titre -->
+    <div class="text-center mb-4 animate-fade">
+        <h2 class="fw-bold text-primary-light">
+            Commandes de {{ client_concerne.first_name }} {{ client_concerne.last_name }}
+        </h2>
+        <p class="opacity-75">Historique complet des achats effectués.</p>
+    </div>
+    <!-- Bouton retour -->
+    <div class="mb-4">
+        <a href="/customers/" class="btn btn-neo-primary px-4">
+            <i class="bi bi-arrow-left"></i> Retour à la liste des clients
+        </a>
+    </div>
+    <!-- Aucune commande -->
+    {% if commandes|length == 0 %}
+        <div class="card-neo p-5 text-center animate-fade">
+            <h4 class="fw-bold text-primary-light">Aucune commande</h4>
+            <p class="opacity-75">Ce client n’a passé aucune commande pour le moment.</p>
+        </div>
+    {% endif %}
+    <!-- GRID DES COMMANDES -->
+    <div class="row g-4">
+        {% for cmd in commandes %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-neo p-4 h-100 animate-fade d-flex flex-column justify-content-between">
+                <!-- Header commande -->
+                <div>
+                    <h4 class="fw-bold mb-1">Commande #{{ cmd.IDCommande }}</h4>
+                    <p class="opacity-75 mb-2">
+                        <i class="bi bi-calendar-event me-1"></i>
+                        {{ cmd.DateCommande|date:"d/m/Y" }}
+                    </p>
+                </div>
+                <!-- Montant -->
+                <p class="fw-bold fs-5 mb-3">
+                    {{ cmd.Prix }} €
+                </p>
+                <!-- Statut -->
+                <span class="badge px-3 py-2"
+                      style="background: var(--primary-light); color: #000; font-weight: 600;">
+                    Payée
+                </span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

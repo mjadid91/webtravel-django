@@ -1,0 +1,31 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}Étape modifiée{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 650px;">
+    <!-- Card de confirmation -->
+    <div class="card-neo text-center p-5 animate-fade">
+        <!-- Icône succès -->
+        <div class="mb-4">
+            <i class="bi bi-check-circle-fill" style="font-size: 3rem; color: var(--primary-light);"></i>
+        </div>
+        <!-- Titre -->
+        <h2 class="fw-bold text-primary-light mb-3">
+            Étape modifiée !
+        </h2>
+        <!-- Message -->
+        <p class="lead opacity-75">
+            L’étape du voyage passe désormais par
+            <strong>{{ etape.ville }}</strong>
+            pendant <strong>{{ etape.Nb_jours }}</strong> jours.
+        </p>
+        <!-- Bouton retour -->
+        <a href="/voyages/{{ etape.IDVoyage }}/" class="btn btn-neo-primary mt-4 px-4 py-2 fw-bold">
+            Retour au voyage
+        </a>
+    </div>
+</div>
+
+{% endblock %}

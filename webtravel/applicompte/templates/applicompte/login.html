@@ -1,0 +1,54 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Connexion{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 600px;">
+    <!-- Titre -->
+    <div class="text-center mb-4 animate-fade">
+        <h2 class="fw-bold text-primary-light">Connexion</h2>
+        <p class="opacity-75">Accédez à votre espace WebTravel.</p>
+    </div>
+    <!-- Card du formulaire -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+        <form id="form_login" method="post" action="/connexion/">
+            {% csrf_token %}
+            <!-- Identifiant -->
+            <div class="mb-4">
+                <label for="id_username" class="form-label fw-semibold">Identifiant</label>
+                <input type="text"
+                       class="form-control"
+                       name="username"
+                       id="id_username"
+                       placeholder="Votre identifiant"
+                       required>
+            </div>
+            <!-- Mot de passe -->
+            <div class="mb-4">
+                <label for="id_password" class="form-label fw-semibold">Mot de passe</label>
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       id="id_password"
+                       placeholder="Votre mot de passe"
+                       required>
+            </div>
+            <!-- Bouton -->
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                Se connecter
+            </button>
+        </form>
+        <!-- Liens secondaires -->
+        <div class="text-center mt-3">
+            <small class="opacity-75">
+                Pas encore inscrit ?
+                <a href="/register/" class="text-primary-light fw-semibold">Inscrivez-vous</a>
+                <br>
+                Mot de passe oublié ?
+                <a href="/password_reset/" class="text-primary-light fw-semibold">Renouveler</a>
+            </small>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Détails commande n°{{ commande.IDCommande }}{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 900px;">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4 animate-fade">
+        <h2 class="fw-bold text-primary-light">
+            Commande n°{{ commande.IDCommande }}
+        </h2>
+
+        <a href="/commandes/" class="btn btn-neo-primary px-4">
+            <i class="bi bi-arrow-left"></i> Retour à l'historique
+        </a>
+    </div>
+    <!-- Card principale -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+        <!-- Date -->
+        <p class="opacity-75 mb-4">
+            <i class="bi bi-calendar-event me-1"></i>
+            Commande passée le <strong>{{ commande.DateCommande|date:"d F Y" }}</strong>
+        </p>
+        <!-- Lignes de commande -->
+        <div class="d-flex flex-column gap-4">
+
+            {% for ligne in lignes %}
+            <div class="card-neo-light p-4 d-flex justify-content-between align-items-center">
+
+                <!-- Infos voyage -->
+                <div>
+                    <h5 class="fw-bold mb-1">{{ ligne.voyage.Titre }}</h5>
+                    <p class="opacity-75 mb-1">
+                        Destination : <strong>{{ ligne.voyage.ville_set.first.NomVille }}</strong>
+                    </p>
+                    <p class="opacity-75 mb-0">
+                        Prix unitaire : <strong>{{ ligne.prix_unitaire }} €</strong>
+                    </p>
+                </div>
+                <!-- Quantité + total -->
+                <div class="text-end">
+                    <p class="mb-1">
+                        Quantité : <strong>{{ ligne.quantite }}</strong>
+                    </p>
+                    <p class="fw-bold fs-5 mb-0">
+                        {{ ligne.total_ligne }} €
+                    </p>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Total général -->
+        <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+        <div class="text-end">
+            <p class="fw-bold fs-4 text-primary-light">
+                Total payé : {{ commande.Prix }} €
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

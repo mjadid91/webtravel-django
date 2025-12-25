@@ -1,0 +1,101 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Profil{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 700px;">
+
+    <!-- Titre -->
+    <div class="text-center mb-4 animate-fade">
+        <h2 class="fw-bold text-primary-light">Votre profil</h2>
+        <p class="opacity-75">Modifiez vos informations personnelles.</p>
+    </div>
+
+    <!-- Card Profil -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+
+        <!-- Avatar -->
+        <div class="text-center mb-4">
+            <img src="{{ MEDIA_URL }}{{ user.image }}"
+                 class="rounded-circle shadow-sm"
+                 width="120" height="120"
+                 style="object-fit: cover; border: 3px solid var(--primary-light);">
+        </div>
+
+        <form enctype="multipart/form-data"
+              id="form_profil"
+              action="/user/updated"
+              method="post">
+
+            {% csrf_token %}
+
+            <!-- Identifiant -->
+            <div class="mb-4">
+                <label for="id_username" class="form-label fw-semibold">Identifiant</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="id_username"
+                       value="{{ user.username }}">
+            </div>
+
+            <!-- Prénom -->
+            <div class="mb-4">
+                <label for="first_name" class="form-label fw-semibold">Prénom</label>
+                <input type="text"
+                       name="first_name"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="first_name"
+                       value="{{ user.first_name }}">
+            </div>
+
+            <!-- Nom -->
+            <div class="mb-4">
+                <label for="last_name" class="form-label fw-semibold">Nom</label>
+                <input type="text"
+                       name="last_name"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="last_name"
+                       value="{{ user.last_name }}">
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="form-label fw-semibold">E-mail</label>
+                <input type="email"
+                       name="email"
+                       class="form-control"
+                       maxlength="80"
+                       required
+                       id="email"
+                       value="{{ user.email }}">
+            </div>
+
+            <!-- Photo -->
+            <div class="mb-4">
+                <label for="id-image" class="form-label fw-semibold">Changer votre photo</label>
+                <input class="form-control"
+                       name="image"
+                       type="file"
+                       accept="image/*"
+                       id="id-image">
+            </div>
+
+            <!-- Bouton -->
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                Mettre à jour
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

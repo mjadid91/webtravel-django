@@ -1,0 +1,99 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}
+Détail du voyage
+{% endblock %}
+
+{% block main %}
+
+<!-- HERO DU VOYAGE -->
+<section class="hero-neo d-flex flex-column justify-content-center align-items-center text-center mb-5"
+         style="height: 45vh; background-image: linear-gradient(
+                rgba(6,182,212,0.35),
+                rgba(124,58,237,0.35)
+             ), url('{{ MEDIA_URL }}{{ voyage.image }}'); background-size: cover; background-position: center;">
+
+    <h1 class="fw-bold display-4 text-white animate-fade">
+        {{ voyage.Titre }}
+    </h1>
+
+    <p class="lead text-light opacity-75 animate-fade">
+        Découvrez les étapes de ce voyage exceptionnel
+    </p>
+
+    {% if user.is_authenticated and not user.is_staff %}
+    <a href="/panier/add/{{ voyage.IDVoyage }}/"
+       class="btn btn-neo-primary btn-lg px-5 py-3 fw-bold mt-3 animate-fade">
+        <i class="bi bi-cart-plus"></i> Acheter ce voyage
+    </a>
+    {% endif %}
+</section>
+
+<div class="container">
+    <!-- SECTION STAFF : AJOUT D'ÉTAPE -->
+    {% if user.is_staff %}
+    <div class="card-neo p-4 p-lg-5 mb-5 animate-fade">
+        <h3 class="fw-bold text-primary-light mb-4">Ajouter une étape</h3>
+        <form action="/voyages/{{ voyage.IDVoyage }}/addVoyage" method="post">
+            {% csrf_token %}
+
+            <div class="mb-4">
+                <label for="id_ville" class="form-label fw-semibold">Ville</label>
+                <select name="ville" class="form-select" required id="id_ville">
+                    <option selected disabled>Choisissez une ville</option>
+                    {% for vil in villes %}
+                    <option value="{{ vil.IDVille }}">{{ vil.NomVille }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="id_nbjours" class="form-label fw-semibold">Nombre de jours</label>
+                <input type="number" name="Nb_jours" class="form-control" required id="id_nbjours" min="1">
+            </div>
+
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                Ajouter l'étape
+            </button>
+        </form>
+    </div>
+    {% endif %}
+    <!-- LISTE DES ÉTAPES -->
+    {% if etapes %}
+    <div class="text-center mb-4 animate-fade">
+        <h2 class="fw-bold text-primary-light">Les étapes du voyage</h2>
+        <p class="opacity-75">Découvrez le parcours complet</p>
+    </div>
+    <div class="row g-4">
+        {% for etape in etapes %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-neo p-4 h-100 d-flex flex-column justify-content-between animate-fade">
+                <div>
+                    <h4 class="fw-bold mb-1">{{ etape.ville }}</h4>
+                    <p class="opacity-75 mb-3">
+                        Durée : <strong>{{ etape.Nb_jours }}</strong> jours
+                    </p>
+                </div>
+                {% if user.is_staff %}
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="/voyages/{{ voyage.IDVoyage }}/updateEtape/{{ etape.IDEtape }}"
+                       class="btn btn-sm btn-neo-primary px-3">
+                        <i class="bi bi-pencil-square me-1"></i> Modifier
+                    </a>
+
+                    <a href="/voyages/{{ voyage.IDVoyage }}/deleteEtape/{{ etape.IDEtape }}"
+                       class="btn btn-sm btn-danger px-3">
+                        <i class="bi bi-trash me-1"></i> Supprimer
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <h4 class="text-center opacity-75 mt-5 animate-fade">Aucune étape pour le moment</h4>
+    {% endif %}
+</div>
+
+{% endblock %}

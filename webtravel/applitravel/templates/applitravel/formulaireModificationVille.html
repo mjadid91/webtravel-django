@@ -1,0 +1,51 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}
+Modification d'une ville
+{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 650px;">
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">Modifier une ville</h2>
+        <p class="opacity-75">
+            Vous modifiez la ville <span class="fw-semibold">{{ ville.NomVille }}</span>
+            située en <span class="fw-semibold">{{ ville.NomPays }}</span>.
+        </p>
+    </div>
+    <!-- Card du formulaire -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+        <form action="/villes/{{ ville.IDVille }}/updated/" method="post" class="django-form-custom">
+            {% csrf_token %}
+            <!-- Nom de la ville -->
+            <div class="mb-4">
+                <label for="id_nomVille" class="form-label fw-semibold">Nom de la ville</label>
+                <input type="text"
+                       name="NomVille"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="id_nomVille"
+                       value="{{ ville.NomVille }}">
+            </div>
+            <!-- Nom du pays -->
+            <div class="mb-4">
+                <label for="id_nomPays" class="form-label fw-semibold">Nom du pays</label>
+                <input type="text"
+                       name="NomPays"
+                       class="form-control"
+                       required
+                       id="id_nomPays"
+                       value="{{ ville.NomPays }}">
+            </div>
+            <!-- Bouton -->
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                Modifier la ville
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

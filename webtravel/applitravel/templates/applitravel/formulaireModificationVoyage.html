@@ -1,0 +1,64 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %} Modification d'un voyage {% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 700px;">
+
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">Modifier un voyage</h2>
+        <p class="opacity-75">
+            Vous modifiez le voyage <span class="fw-semibold">{{ voyage.Titre }}</span>.
+        </p>
+    </div>
+
+    <!-- Card du formulaire -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+        <form action="/voyages/{{ voyage.IDVoyage }}/updated/" method="post" enctype="multipart/form-data" class="django-form-custom">
+            {% csrf_token %}
+            <!-- Nom du voyage -->
+            <div class="mb-4">
+                <label for="id_nomVoyage" class="form-label fw-semibold">Nom du voyage</label>
+                <input type="text"
+                       name="Titre"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="id_nomVoyage"
+                       value="{{ voyage.Titre }}">
+            </div>
+            <!-- Prix -->
+            <div class="mb-4">
+                <label for="id_prix" class="form-label fw-semibold">Prix du voyage (€)</label>
+                <input type="number"
+                       name="Prix"
+                       min="0"
+                       step="0.1"
+                       class="form-control"
+                       required
+                       id="id_prix"
+                       value="{{ voyage.Prix }}">
+            </div>
+            <!-- Image actuelle -->
+            <div class="mb-4">
+                <label class="form-label fw-semibold">Image actuelle</label>
+                <div class="mb-2">
+                    <img src="{{ MEDIA_URL }}{{ voyage.image }}" width="220" class="rounded shadow" alt="Image du voyage">
+                </div>
+                <p class="opacity-75"><i>Fichier actuel : {{ voyage.image }}</i></p>
+
+                <label for="id-image" class="form-label fw-semibold mt-3">Changer l’image</label>
+                <input class="form-control" type="file" accept="image/*" name="image" id="id-image">
+            </div>
+            <!-- Bouton -->
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                Modifier le voyage
+            </button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

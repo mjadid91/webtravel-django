@@ -1,0 +1,5 @@
+/env 
+db.sqlite3__pycache__/
+*.pyc
+webtravel/db.sqlite3
+.idea

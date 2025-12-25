@@ -1,0 +1,55 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Liste des clients{% endblock %}
+
+{% block main %}
+
+<div class="container py-5">
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">
+            {{ clients|length }} clients enregistrés
+        </h2>
+        <p class="opacity-75">Gérez vos utilisateurs en toute simplicité.</p>
+    </div>
+    <!-- GRID DES CLIENTS -->
+    <div class="row g-4">
+        {% for client in clients %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-neo p-4 h-100 d-flex flex-column justify-content-between animate-fade">
+                <!-- Header : Avatar + Identité -->
+                <div class="d-flex align-items-center mb-3">
+                    <img src="{{ MEDIA_URL }}{{ client.image }}"
+                         class="rounded-circle me-3 shadow"
+                         width="55" height="55" alt="avatar">
+                    <div>
+                        <h5 class="fw-bold mb-0">{{ client.first_name }} {{ client.last_name }}</h5>
+                        <p class="opacity-75 mb-0">@{{ client.username }}</p>
+                    </div>
+                </div>
+                <!-- Infos -->
+                <div class="mb-3">
+                    <p class="small opacity-75 mb-1">
+                        <i class="bi bi-calendar-plus me-1"></i>
+                        Inscription : <strong>{{ client.date_joined|date:"d F Y H:i" }}</strong>
+                    </p>
+
+                    <p class="small opacity-75 mb-0">
+                        <i class="bi bi-clock-history me-1"></i>
+                        Dernière connexion : <strong>{{ client.last_login|date:"d F Y H:i" }}</strong>
+                    </p>
+                </div>
+                <!-- Actions -->
+                <div class="d-flex justify-content-end mt-3">
+                    <a href="/orders/{{ client.id }}/"
+                       class="btn btn-sm btn-neo-primary px-3"
+                       title="Voir les commandes">
+                        <i class="bi bi-journal-text me-1"></i> Commandes
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

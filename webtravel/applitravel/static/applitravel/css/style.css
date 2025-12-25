@@ -1,0 +1,261 @@
+/* =========================================================
+   DESIGN SYSTEM — VARIABLES (NEO‑TRAVEL THEME)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Couleurs principales */
+    --primary: #022a70;              /* Turquoise moderne */
+    --primary-light: #00ddf8;
+    --primary-dark: #dde1ff;
+
+    /* Accents premium */
+    --accent: #A855F7;               /* Violet néon */
+    --accent-dark: #7C3AED;
+
+    /* Fond premium */
+    --dark-neo: #0b1222;             /* Bleu nuit profond */
+    --dark-neo-light: #161d2b;
+
+    /* Neutres */
+    --white: #ffffff;
+    --gray-light: #E2E8F0;
+    --gray-soft: rgba(255, 255, 255, 0.08);
+
+    /* Radius & Shadows */
+    --radius: 14px;
+    --radius-sm: 8px;
+
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark-neo);
+    color: var(--white);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+a {
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.Site-content {
+    flex: 1;
+}
+
+/* =========================================================
+   NAVBAR — GLASSMORPHISM PREMIUM
+   ========================================================= */
+.navbar-neo {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-neo .nav-link {
+    color: var(--white);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.navbar-neo .nav-link:hover {
+    color: var(--primary-light);
+}
+
+.navbar-neo .navbar-brand {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+/* Accent turquoise dans le texte */
+.text-turquoise,
+.text-primary-light {
+    color: var(--primary-light);
+}
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+.hero-neo {
+    height: 90vh;
+    background: linear-gradient(
+        135deg,
+        rgba(6, 182, 212, 0.35),
+        rgba(124, 58, 237, 0.35)
+    ),
+    url("../img/hero.jpg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    color: var(--white);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn-neo-primary {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.btn-neo-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Bouton secondaire */
+.btn-neo-secondary {
+    background: var(--dark-neo-light);
+    color: var(--white);
+    border: 1px solid var(--gray-soft);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.btn-neo-secondary:hover {
+    background: var(--dark-neo);
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+.form-control {
+    background: var(--dark-neo-light);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+}
+
+.form-control:focus {
+    background: var(--dark-neo-light);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(6,182,212,0.25);
+    color: var(--white);
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+.card-neo {
+    background: var(--dark-neo-light);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+}
+
+.card-neo:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Variante plus claire */
+.card-neo-light {
+    background: #243044;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+.badge-neo {
+    background: var(--primary-light);
+    color: #000;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+.sidebar-neo {
+    width: 260px;
+    height: 100vh;
+    background: var(--dark-neo);
+    color: var(--white);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    padding: 1.5rem;
+}
+
+.sidebar-link {
+    color: #cbd5e1;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    display: block;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.sidebar-link:hover {
+    background: rgba(6,182,212,0.15);
+    color: var(--white);
+    transform: translateX(4px);
+}
+
+.sidebar-link.active {
+    background: var(--primary-light);
+    color: #000 !important;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer-neo {
+    background: var(--dark-neo-light);
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade {
+    animation: fadeIn 0.8s ease-out forwards;
+}

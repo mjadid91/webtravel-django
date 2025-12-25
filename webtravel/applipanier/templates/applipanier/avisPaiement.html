@@ -1,0 +1,37 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Confirmation Paiement{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 650px;">
+    <!-- Card de confirmation -->
+    <div class="card-neo text-center p-5 animate-fade">
+        <!-- Icône succès -->
+        <div class="mb-4">
+            <i class="bi bi-check-circle-fill"
+               style="font-size: 3rem; color: var(--primary-light);"></i>
+        </div>
+        <!-- Titre -->
+        <h2 class="fw-bold text-primary-light mb-3">
+            Paiement validé
+        </h2>
+        <!-- Message -->
+        <p class="lead opacity-75">
+            Merci <strong>{{ user.first_name }} {{ user.last_name }}</strong>.
+        </p>
+        <p class="opacity-75">
+            Votre commande numéro
+            <strong>{{ panier.IDCommande }}</strong>
+            d’un montant de
+            <strong>{{ panier.Prix }} €</strong>
+            a bien été enregistrée.
+        </p>
+        <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+        <!-- Bouton retour -->
+        <a href="/voyages/" class="btn btn-neo-primary px-4 py-2 fw-bold">
+            Retourner au catalogue
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Mon Panier{% endblock %}
+
+{% block main %}
+
+<div class="container py-5">
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">Votre panier</h2>
+        <p class="opacity-75">Retrouvez ici les voyages que vous souhaitez réserver.</p>
+    </div>
+    {% if lignes_panier %}
+    <!-- GRID DES LIGNES DU PANIER -->
+    <div class="row g-4 mb-5">
+        {% for ligne in lignes_panier %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-neo p-4 h-100 d-flex flex-column justify-content-between animate-fade">
+                <!-- Titre du voyage -->
+                <h4 class="fw-bold mb-2">{{ ligne.Voyage.Titre }}</h4>
+                <!-- Prix -->
+                <p class="opacity-75 mb-1">
+                    Prix unitaire : <strong>{{ ligne.PrixUnitaire }} €</strong>
+                </p>
+                <!-- Quantité -->
+                <p class="opacity-75 mb-3">
+                    Quantité : <strong>{{ ligne.Quantite }}</strong>
+                </p>
+                <!-- Total ligne -->
+                <p class="fw-bold fs-5 mb-3">
+                    Total : {{ ligne.TotalLigne }} €
+                </p>
+                <!-- Actions -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="/panier/add/{{ ligne.IDVoyage }}/"
+                       class="btn btn-sm btn-neo-primary px-3"
+                       title="Ajouter">
+                        <i class="bi bi-plus-lg"></i>
+                    </a>
+                    <a href="/panier/{{ ligne.IDVoyage }}/decrease/"
+                       class="btn btn-sm btn-warning px-3"
+                       title="Retirer">
+                        <i class="bi bi-dash-lg"></i>
+                    </a>
+                    <a href="/panier/{{ ligne.IDVoyage }}/delete/"
+                       class="btn btn-sm btn-danger px-3"
+                       title="Supprimer la ligne">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- RÉCAPITULATIF -->
+    <div class="card-neo p-4 p-lg-5 animate-fade" style="max-width: 600px; margin: 0 auto;">
+        <h3 class="fw-bold text-primary-light mb-4 text-center">Récapitulatif</h3>
+        <div class="d-flex justify-content-between fs-5 mb-4">
+            <span>Total à payer :</span>
+            <strong>{{ total_global }} €</strong>
+        </div>
+        <div class="d-flex justify-content-between">
+            <a href="/panier/delete/"
+               class="btn btn-danger px-4 py-2 fw-bold">
+                <i class="bi bi-x-circle"></i> Vider le panier
+            </a>
+            <a href="/panier/pay/"
+               class="btn btn-neo-primary px-4 py-2 fw-bold">
+                Payer <i class="bi bi-credit-card"></i>
+            </a>
+        </div>
+    </div>
+    {% else %}
+    <!-- PANIER VIDE -->
+    <div class="card-neo p-5 text-center animate-fade">
+        <h4 class="fw-bold text-primary-light">Votre panier est vide</h4>
+        <p class="opacity-75">Découvrez nos voyages et commencez votre aventure.</p>
+
+        <a href="/voyages/" class="btn btn-neo-primary mt-3 px-4 py-2 fw-bold">
+            Voir les voyages
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

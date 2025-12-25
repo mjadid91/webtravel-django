@@ -1,0 +1,83 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}
+Les voyages
+{% endblock %}
+
+{% block main %}
+
+<div class="container py-5">
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">
+            {{ voyages|length }} voyages disponibles
+        </h2>
+        <p class="opacity-75">Découvrez nos destinations et partez à l’aventure.</p>
+    </div>
+    <!-- GRID DES VOYAGES -->
+    <div class="row g-4">
+        {% for voy in voyages %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-neo h-100 d-flex flex-column animate-fade overflow-hidden">
+                <!-- Image -->
+                <a href="/voyages/{{ voy.IDVoyage }}">
+                    <img src="{{ MEDIA_URL }}{{ voy.image }}"
+                         alt="{{ voy.Titre }}"
+                         class="w-100"
+                         style="height: 200px; object-fit: cover;">
+                </a>
+                <!-- Contenu -->
+                <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+                    <div>
+                        <h4 class="fw-bold mb-1">{{ voy.Titre }}</h4>
+                        <p class="opacity-75 mb-3">
+                            Prix : <strong>{{ voy.Prix }}€</strong>
+                        </p>
+                    </div>
+                    <!-- Actions -->
+                    <div class="d-flex justify-content-between mt-3">
+                        <!-- STAFF -->
+                        {% if user.is_staff %}
+                            <a href="{{ voy.IDVoyage }}/update"
+                               class="btn btn-sm btn-neo-primary px-3">
+                                <i class="bi bi-pencil-square me-1"></i> Modifier
+                            </a>
+
+                            <a href="{{ voy.IDVoyage }}/delete"
+                               class="btn btn-sm btn-danger px-3">
+                                <i class="bi bi-trash me-1"></i> Supprimer
+                            </a>
+
+                            <a href="/voyages/{{ voy.IDVoyage }}"
+                               class="btn btn-sm btn-primary px-3">
+                                <i class="bi bi-info-circle me-1"></i> Détails
+                            </a>
+
+                        <!-- CLIENT CONNECTÉ -->
+                        {% elif user.is_authenticated %}
+                            <a href="/voyages/{{ voy.IDVoyage }}"
+                               class="btn btn-sm btn-neo-primary px-3">
+                                <i class="bi bi-info-circle me-1"></i> Détails
+                            </a>
+
+                            <a href="/panier/add/{{ voy.IDVoyage }}/"
+                               class="btn btn-sm btn-neo-primary px-3">
+                                <i class="bi bi-cart me-1"></i> Acheter
+                            </a>
+
+                        <!-- NON CONNECTÉ -->
+                        {% else %}
+                            <a href="/voyages/{{ voy.IDVoyage }}"
+                               class="btn btn-sm btn-neo-primary w-100 px-3">
+                                <i class="bi bi-info-circle me-1"></i> Détails
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}
+Création d'une ville
+{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 600px;">
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">Créer une nouvelle ville</h2>
+        <p class="opacity-75">Ajoutez une ville pour enrichir les destinations disponibles.</p>
+    </div>
+    <!-- Card du formulaire -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+        <form action="/villes/create/" method="post" class="django-form-custom">
+            {% csrf_token %}
+            <div class="mb-4">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                Valider
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

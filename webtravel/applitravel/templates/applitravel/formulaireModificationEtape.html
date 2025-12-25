@@ -1,0 +1,47 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}
+Modification d'une étape
+{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 650px;">
+
+    <!-- Titre -->
+    <div class="text-center mb-4 animate-fade">
+        <h2 class="fw-bold text-primary-light">Modifier une étape</h2>
+        <p class="opacity-75">
+            Étape actuelle : <span class="fw-semibold">{{ etape.ville }}</span>
+            — durée : <span class="fw-semibold">{{ etape.Nb_jours }} jours</span>
+        </p>
+    </div>
+
+    <!-- Card du formulaire -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+        <form action="/voyages/{{ voyage.IDVoyage }}/updatedEtape/{{ etape.IDEtape }}/" method="post">
+            {% csrf_token %}
+            <!-- Sélection de la ville -->
+            <div class="mb-4">
+                <label for="id_ville" class="form-label fw-semibold">Nouvelle ville</label>
+                <select name="ville" class="form-select" required id="id_ville">
+                    <option selected disabled>Choisissez une ville</option>
+                    {% for vil in villes %}
+                        <option value="{{ vil.IDVille }}">{{ vil.NomVille }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- Nombre de jours -->
+            <div class="mb-4">
+                <label for="id_nbjours" class="form-label fw-semibold">Nombre de jours</label>
+                <input type="number" name="Nb_jours" class="form-control" required id="id_nbjours" min="1">
+            </div>
+            <!-- Bouton -->
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                Modifier l'étape
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

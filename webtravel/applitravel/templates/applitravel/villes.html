@@ -1,0 +1,44 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}
+Les villes
+{% endblock %}
+
+{% block main %}
+
+<div class="container py-5">
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">
+            {{ villes|length }} villes disponibles
+        </h2>
+        <p class="opacity-75">Gérez vos destinations en toute simplicité.</p>
+    </div>
+    <!-- GRID DES VILLES -->
+    <div class="row g-4">
+        {% for v in villes %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-neo p-4 h-100 d-flex flex-column justify-content-between animate-fade">
+                <!-- Nom de la ville -->
+                <div>
+                    <h4 class="fw-bold mb-1">{{ v.NomVille }}</h4>
+                    <p class="opacity-75 mb-3">{{ v.NomPays }}</p>
+                </div>
+                <!-- Actions -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="{{ v.IDVille }}/update"
+                       class="btn btn-sm btn-neo-primary px-3">
+                        <i class="bi bi-pencil-square me-1"></i> Modifier
+                    </a>
+                    <a href="{{ v.IDVille }}/delete"
+                       class="btn btn-sm btn-danger px-3">
+                        <i class="bi bi-trash me-1"></i> Supprimer
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Mes Commandes{% endblock %}
+
+{% block main %}
+
+<div class="container py-5">
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-primary-light">Historique de vos commandes</h2>
+        <p class="opacity-75">Retrouvez ici toutes vos commandes passées.</p>
+    </div>
+    <!-- Aucune commande -->
+    {% if not commandes %}
+    <div class="card-neo p-5 text-center animate-fade">
+        <h4 class="fw-bold text-primary-light">Aucune commande</h4>
+        <p class="opacity-75">Vous n’avez pas encore passé de commande.</p>
+        <a href="/voyages/" class="btn btn-neo-primary mt-3 px-4 py-2 fw-bold">
+            Découvrir nos voyages
+        </a>
+    </div>
+    {% endif %}
+    <!-- GRID DES COMMANDES -->
+    <div class="row g-4">
+        {% for cmd in commandes %}
+        <div class="col-12 col-md-6 col-lg-4">
+
+            <div class="card-neo p-4 h-100 d-flex flex-column justify-content-between animate-fade">
+
+                <!-- Header commande -->
+                <div>
+                    <h4 class="fw-bold mb-1">Commande #{{ cmd.IDCommande }}</h4>
+                    <p class="opacity-75 mb-2">
+                        <i class="bi bi-calendar-event me-1"></i>
+                        {{ cmd.DateCommande|date:"d F Y" }}
+                    </p>
+                </div>
+
+                <!-- Montant -->
+                <p class="fw-bold fs-5 mb-3">
+                    {{ cmd.Prix }} €
+                </p>
+                <!-- Actions -->
+                <div class="d-flex justify-content-end">
+                    <a href="/commandes/{{ cmd.IDCommande }}/"
+                       class="btn btn-neo-primary px-3">
+                        <i class="bi bi-info-circle me-1"></i> Détails
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

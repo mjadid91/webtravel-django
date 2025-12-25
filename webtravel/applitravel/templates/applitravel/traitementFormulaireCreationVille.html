@@ -1,0 +1,31 @@
+{% extends 'applitravel/base.html' %}
+
+{% block title %}
+Ville créée
+{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 600px;">
+    <!-- Card de confirmation -->
+    <div class="card-neo text-center p-5 animate-fade">
+        <!-- Icône succès -->
+        <div class="mb-4">
+            <i class="bi bi-check-circle-fill" style="font-size: 3rem; color: var(--primary-light);"></i>
+        </div>
+        <!-- Titre -->
+        <h2 class="fw-bold text-primary-light mb-3">
+            Création réussie !
+        </h2>
+        <!-- Message -->
+        <p class="lead opacity-75">
+            La ville <strong>{{ nom }}</strong> a bien été enregistrée.
+        </p>
+        <!-- Bouton retour -->
+        <a href="/villes/" class="btn btn-neo-primary mt-4 px-4 py-2 fw-bold">
+            Retour aux villes
+        </a>
+    </div>
+</div>
+
+{% endblock %}

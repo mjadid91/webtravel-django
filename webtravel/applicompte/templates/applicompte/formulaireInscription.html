@@ -1,0 +1,100 @@
+{% extends 'applitravel/base.html' %}
+{% block title %}Inscription{% endblock %}
+
+{% block main %}
+
+<div class="container py-5" style="max-width: 600px;">
+    <!-- Titre -->
+    <div class="text-center mb-4 animate-fade">
+        <h2 class="fw-bold text-primary-light">Créer un compte</h2>
+        <p class="opacity-75">Rejoignez WebTravel et commencez votre aventure.</p>
+    </div>
+    <!-- Card du formulaire -->
+    <div class="card-neo p-4 p-lg-5 animate-fade">
+        <form enctype="multipart/form-data"
+              id="form_inscription"
+              method="post"
+              action="/inscription/">
+
+            {% csrf_token %}
+            <!-- Identifiant -->
+            <div class="mb-4">
+                <label for="id_username" class="form-label fw-semibold">Identifiant</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="id_username"
+                       placeholder="Votre identifiant">
+            </div>
+            <!-- Prénom -->
+            <div class="mb-4">
+                <label for="first_name" class="form-label fw-semibold">Prénom</label>
+                <input type="text"
+                       name="first_name"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="first_name"
+                       placeholder="Votre prénom">
+            </div>
+            <!-- Nom -->
+            <div class="mb-4">
+                <label for="last_name" class="form-label fw-semibold">Nom</label>
+                <input type="text"
+                       name="last_name"
+                       class="form-control"
+                       maxlength="50"
+                       required
+                       id="last_name"
+                       placeholder="Votre nom">
+            </div>
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="form-label fw-semibold">E-mail</label>
+                <input type="email"
+                       name="email"
+                       class="form-control"
+                       maxlength="80"
+                       required
+                       id="email"
+                       placeholder="Votre email">
+            </div>
+            <!-- Mot de passe -->
+            <div class="mb-4">
+                <label for="id_password" class="form-label fw-semibold">Mot de passe</label>
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       maxlength="80"
+                       required
+                       id="id_password"
+                       placeholder="Votre mot de passe">
+            </div>
+            <!-- Photo -->
+            <div class="mb-4">
+                <label for="id-image" class="form-label fw-semibold">Votre photo</label>
+                <input type="file"
+                       name="image"
+                       class="form-control"
+                       accept="image/*"
+                       id="id-image">
+            </div>
+            <!-- Bouton -->
+            <button type="submit" class="btn btn-neo-primary w-100 py-2 fw-bold">
+                S'inscrire
+            </button>
+        </form>
+        <!-- Déjà inscrit -->
+        <div class="text-center mt-3">
+            <small class="opacity-75">
+                Déjà inscrit ?
+                <a href="/connexion/" class="text-primary-light fw-semibold">Connectez-vous</a>
+            </small>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
